@@ -43,3 +43,19 @@
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
 }
+
+
+/* iPad and up*/
+@media (min-width: 768px) {
+  .searchBar input[type='text'] {
+    width: 30%;
+  }
+
+  .searchBar select {
+    width: 10%;
+  }
+
+  .searchBar input[type='submit'] {
+    width: 10%;
+  }
+}
