@@ -1,12 +1,17 @@
 import React from 'react'
+import Event from './event'
+import '../styles/searchResults.css'
 
-const SearchResults = (props) => {
-  console.log(props);
-  return(
-    <div>
-      RESULTS
-    </div>
-  )
+const SearchResults = ({events}) => {
+    return(
+      <div className='searchResults'>
+        { events.map((event, index) => {
+            return(
+              <Event key={index} {...event}/>
+            )
+        })}
+      </div>
+    )
 }
 
 export default SearchResults;

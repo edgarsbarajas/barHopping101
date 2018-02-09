@@ -1,0 +1,18 @@
+.event {
+  width: 95%;
+  position: relative;
+}
+
+.event .eventLogo {
+  width: 100%;
+}
+
+.event .price {
+  padding: 8px 5px 5px 5px;
+  color: white;
+  background: gray;
+  position: absolute;
+  margin-top: 10px;
+  right: 10px;
+  font-family: 'BentonSans Thin';
+}
