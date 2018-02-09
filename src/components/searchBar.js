@@ -6,14 +6,21 @@ class SearchBar extends React.Component {
     super(props);
 
     this.state = {
-
+      searchValue: ""
     }
+  }
+
+  handleChange(event){
+    this.setState({ searchValue: event.target.value })
   }
 
   render(){
     return(
       <form className='searchBar'>
-        <input type='text' placeholder='Search city'/>
+        <input type='text'
+          value={this.state.searchValue}
+          onChange={e => this.handleChange(e)}
+          placeholder='Search city'/>
         <select>
           <option value="all dates">All Dates &#8675;</option>
           <option value="today">Tomorrow</option>
