@@ -7,6 +7,7 @@ nav {
   color: white;
   align-self: flex-end;
   padding: 10px;
+  font-family: 'BentonSans Regular', 'sans-serif';
 }
 
 header .logo {
@@ -20,4 +21,17 @@ header .logo {
   header .logo {
     width: 200px;
   }
+}
+
+/* fonts */
+@font-face {
+  font-family: 'BentonSans Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/BentonSans Regular.otf'); /* IE9 Compat Modes */
+  src: local('BentonSans Regular'), local('BentonSans Regular'),
+       url('/fonts/BentonSans Regular.otf') format('embedded-opentype'), /* IE6-IE8 */
+       url('/fonts/BentonSans Regular.otf') format('woff2'), /* Super Modern Browsers */
+       url('/fonts/BentonSans Regular.otf') format('woff'), /* Modern Browsers */
+       url('/fonts/BentonSans Regular.otf') format('truetype') /* Safari, Android, iOS */
 }
