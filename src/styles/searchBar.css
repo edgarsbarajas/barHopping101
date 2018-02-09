@@ -1,0 +1,65 @@
+.searchBar {
+  display: flex;
+  justify-content: center;
+}
+
+.searchBar input, .searchBar select {
+  height: 50px;
+  box-sizing: border-box;
+}
+
+.searchBar input[type='text'] {
+  width: 175px;
+  background-color: white;
+  border: 1px lightgray solid;
+  padding-left: 10px;
+  font-size: 20px;
+  font-family: 'BentonSans Regular';
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.searchBar input[type='text']::placeholder {
+   color: lightgray;
+}
+
+.searchBar input[type='submit'] {
+  width: 100px;
+  background-color: #f6682F;
+  color: white;
+  font-size: 14px;
+  font-family: 'BentonSans Regular';
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: none;
+}
+
+.searchBar select {
+  width: 100px;
+  background-color: white;
+  border: 1px lightgray solid;
+  padding-left: 10px;
+  font-size: 15px;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+}
+
+.searchBar input:focus, .searchBar select:focus {
+  outline: none;
+  border-color: #00BFFF;
+}
+
+/* iPad and up*/
+@media (min-width: 768px) {
+  .searchBar input[type='text'] {
+    width: 50%;
+  }
+
+  .searchBar select {
+    width: 15%;
+  }
+
+  .searchBar input[type='submit'] {
+    width: 15%;
+  }
+}
