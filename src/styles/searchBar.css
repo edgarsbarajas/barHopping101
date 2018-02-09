@@ -28,6 +28,7 @@
   width: 100px;
   background-color: #f6682F;
   color: white;
+  font-size: 14px;
   font-family: 'BentonSans Regular';
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -48,14 +49,14 @@
 /* iPad and up*/
 @media (min-width: 768px) {
   .searchBar input[type='text'] {
-    width: 30%;
+    width: 50%;
   }
 
   .searchBar select {
-    width: 10%;
+    width: 15%;
   }
 
   .searchBar input[type='submit'] {
-    width: 10%;
+    width: 15%;
   }
 }

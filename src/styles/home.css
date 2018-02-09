@@ -4,6 +4,17 @@
   text-align: center;
 }
 
+.home .powered-by {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.home .powered-by span {
+  color: gray;
+  margin-right: 5px;
+  font-family: 'Lato', sans-serif;
+}
+
 /* fonts */
 @font-face {
   font-family: 'BentonSans Thin';
