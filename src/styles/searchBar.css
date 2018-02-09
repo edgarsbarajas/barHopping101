@@ -11,7 +11,6 @@
 .searchBar input[type='text'] {
   width: 175px;
   background-color: white;
-  color: gray;
   border: 1px lightgray solid;
   padding-left: 10px;
   font-size: 20px;
@@ -45,6 +44,10 @@
   -webkit-border-radius: 0px;
 }
 
+.searchBar input:focus, .searchBar select:focus {
+  outline: none;
+  border-color: #00BFFF;
+}
 
 /* iPad and up*/
 @media (min-width: 768px) {
