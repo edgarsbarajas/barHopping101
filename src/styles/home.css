@@ -1,0 +1,19 @@
+.home h1 {
+  color: #f6682F;
+  font-family: 'BentonSans Thin';
+  text-align: center;
+}
+
+/* fonts */
+/* fonts */
+@font-face {
+  font-family: 'BentonSans Thin';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/BentonSans Thin.otf'); /* IE9 Compat Modes */
+  src: local('BentonSans Thin'), local('BentonSans Thin'),
+       url('/fonts/BentonSans Thin.otf') format('embedded-opentype'), /* IE6-IE8 */
+       url('/fonts/BentonSans Thin.otf') format('woff2'), /* Super Modern Browsers */
+       url('/fonts/BentonSans Thin.otf') format('woff'), /* Modern Browsers */
+       url('/fonts/BentonSans Thin.otf') format('truetype') /* Safari, Android, iOS */
+}
