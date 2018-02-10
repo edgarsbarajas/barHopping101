@@ -16,7 +16,11 @@ const Event = (props) => {
   return(
     <div className='event'>
       <img src={logoURL} alt='event-logo' className='eventLogo' />
-      <span className="price">{priceLabel}</span>
+      <span className="price">
+        <img src='/lyft.png' alt='lyft' />
+        <img src='/message.png' alt='message' />
+        {priceLabel}
+      </span>
       <div className='details'>
         <div className='time'>
           {new Date(props.start.local).toLocaleString()}
