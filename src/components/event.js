@@ -25,7 +25,7 @@ const Event = (props) => {
           {props.name.text}
         </div>
         <div className='moreInfo'>
-          <a href={props.url}>More Info</a>
+          <a href={props.url} target="_blank">More Info</a>
         </div>
       </div>
     </div>

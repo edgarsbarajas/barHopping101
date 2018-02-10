@@ -6,7 +6,8 @@ const Header = () => {
     <header>
       <nav>
         <a
-          href='https://www.eventbrite.com/organizer/packages/?origin=create&referrer=https%3A%2F%2Fwww.eventbrite.com%2F'>
+          href='https://www.eventbrite.com/organizer/packages/?origin=create&referrer=https%3A%2F%2Fwww.eventbrite.com%2F'
+          target="_blank">
           CREATE EVENT
         </a>
       </nav>
