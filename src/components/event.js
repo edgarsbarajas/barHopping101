@@ -8,9 +8,14 @@ const Event = (props) => {
     priceLabel = "$"
   }
 
+  let logoURL = "/logoFiller.png"
+  if(props.logo){
+    logoURL = props.logo.url
+  }
+
   return(
     <div className='event'>
-      <img src={props.logo.url} alt='event-logo' className='eventLogo' />
+      <img src={logoURL} alt='event-logo' className='eventLogo' />
       <span className="price">{priceLabel}</span>
       <div className='details'>
         <div className='time'>
