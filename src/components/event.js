@@ -1,4 +1,5 @@
 import React from 'react'
+import MessagingOverlay from './messagingOverlay'
 import '../styles/event.css'
 
 const Event = (props) => {
@@ -15,6 +16,7 @@ const Event = (props) => {
 
   return(
     <div className='event'>
+      <MessagingOverlay />
       <img src={logoURL} alt='event-logo' className='eventLogo' />
       <span className="price">
         <img src='/lyft.png' alt='lyft' />
