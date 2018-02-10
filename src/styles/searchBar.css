@@ -1,6 +1,8 @@
 .searchBar {
   display: flex;
   justify-content: center;
+  max-width: 1080px;
+  margin: 0 auto;
 }
 
 .searchBar input, .searchBar select {
@@ -50,16 +52,16 @@
 }
 
 /* iPad and up*/
-@media (min-width: 768px) {
+@media (min-width: 479px) {
   .searchBar input[type='text'] {
-    width: 50%;
+    width: 61%;
   }
 
   .searchBar select {
-    width: 15%;
+    width: 18%;
   }
 
   .searchBar input[type='submit'] {
-    width: 15%;
+    width: 18%;
   }
 }
