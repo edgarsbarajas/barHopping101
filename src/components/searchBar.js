@@ -19,7 +19,7 @@ class SearchBar extends React.Component {
   handleSubmit(event){
     event.preventDefault()
 
-    axios.get('http://localhost:3001/api/eventbrite', {
+    axios.get('http://barhopping101-backend.herokuapp.com/api/eventbrite', {
       params: {
         city: this.state.searchValue
        }
