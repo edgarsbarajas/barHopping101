@@ -6,10 +6,10 @@ class MessagingOverlay extends React.Component{
     return(
       <div className='messagingOverlay'>
         <form>
-          <input type='text'/>
-          <input type='text'/>
+          <input type='text' className='firstRow' placeholder='(415)555-1234'/>
+          <input type='text' className='firstRow' placeholder='Your name'/>
           <textarea rows="4" cols="50"/>
-          <input type='submit'/>
+          <input type='submit' value='SEND'/>
         </form>
       </div>
     )

@@ -48,7 +48,7 @@
 
 .searchBar input:focus, .searchBar select:focus {
   outline: none;
-  border-color: #00BFFF;
+  border: 1.5px #00BFFF solid;
 }
 
 /* iPad and up*/
