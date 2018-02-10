@@ -4,10 +4,18 @@ header {
 }
 
 nav {
-  color: white;
   align-self: flex-end;
   padding: 10px;
   font-family: 'BentonSans Regular', 'sans-serif';
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #00BFFF;
 }
 
 header .logo {
