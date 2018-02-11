@@ -21,7 +21,7 @@ class Event extends React.Component {
   render(){
     return(
       <div className='event'>
-        <MessagingOverlay showMessaging={this.state.showMessaging}/>
+        <MessagingOverlay showMessaging={this.state.showMessaging} eventURL={this.props.url}/>
         <img src={this.state.logoURL} alt='event-logo' className='eventLogo' />
         <span className="price">
           <img src='/lyft.png' alt='lyft' />
