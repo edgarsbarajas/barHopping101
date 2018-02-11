@@ -41,16 +41,13 @@ class MessagingOverlay extends React.Component{
     handleSubmit(event){
       event.preventDefault()
 
-      axios.get('http://localhost:3001/api/twilio', {
-        params: {
+      axios.post('http://barhopping101-backend.herokuapp.com/twilio', {
           messageBody: this.state.body,
           phoneNumber: this.state.phoneNumber,
           humanName: this.state.humanName
-         }
       })
       .then((response) => {
-        console.log(response.data);
-        console.log(this.props.setEvents(response.data))
+        this.setState({showMessaging: false})
       })
       .catch(function (error) {
         console.log(error);
