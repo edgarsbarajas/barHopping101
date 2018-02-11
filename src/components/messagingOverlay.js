@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import '../styles/messagingOverlay.css'
 
 class MessagingOverlay extends React.Component{
@@ -34,7 +35,26 @@ class MessagingOverlay extends React.Component{
     }
 
     handlePhoneNumberChange(event){
-      this.setState({phoneNumber: event.target.url})
+      this.setState({phoneNumber: event.target.value})
+    }
+
+    handleSubmit(event){
+      event.preventDefault()
+
+      axios.get('http://localhost:3001/api/twilio', {
+        params: {
+          messageBody: this.state.body,
+          phoneNumber: this.state.phoneNumber,
+          humanName: this.state.humanName
+         }
+      })
+      .then((response) => {
+        console.log(response.data);
+        console.log(this.props.setEvents(response.data))
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     }
 
     render(){
@@ -42,7 +62,7 @@ class MessagingOverlay extends React.Component{
         if(this.state.showMessaging){
           return(
             <div className='messagingOverlay'>
-              <form>
+              <form onSubmit={e => {this.handleSubmit(e)}}>
                 <input type='text'
                   className='firstRow'
                   placeholder='(415)555-1234'
