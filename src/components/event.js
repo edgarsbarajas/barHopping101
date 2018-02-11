@@ -1,5 +1,7 @@
 import React from 'react'
+import LyftOverlay from './lyftOverlay'
 import MessagingOverlay from './messagingOverlay'
+import axios from 'axios'
 import '../styles/event.css'
 
 class Event extends React.Component {
@@ -10,21 +12,51 @@ class Event extends React.Component {
     this.state = {
       priceLabel: this.props.is_free === true ? "FREE" : "$",
       logoURL: this.props.logo ? this.props.logo.url : "/logoFiller.png",
-      showMessaging: false
+      showMessaging: false,
+      showLyft: false,
+      haveVenueInfo: false,
+      venue: {longitude: "",latitude: ""}
     }
+
+    console.log("EVENT", this.state);
   }
 
   toggleMessaging(){
     this.setState({showMessaging: true})
   }
 
+  toggleLyft(){
+    this.setState({showLyft: true})
+  }
+
+  getVenueInfo(){
+    console.log('lyft bitch')
+    this.toggleLyft()
+    
+    if(!this.state.haveVenueInfo){
+      this.setState({haveVenueInfo: true})
+      console.log("got here ya bish 1");
+      axios.get(`http://localhost:3001/api/eventbrite/venues/${this.props.venue_id}`)
+        .then((response) => {
+          console.log("got here ya bish 2");
+          this.setState({
+            venue: {longitude: response.data.longitude, latitude: response.data.latitude}
+          })
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }
+
   render(){
     return(
       <div className='event'>
+        <LyftOverlay showLyft={this.state.showLyft} venueCoordinates={this.state.venue}/>
         <MessagingOverlay showMessaging={this.state.showMessaging} eventURL={this.props.url}/>
         <img src={this.state.logoURL} alt='event-logo' className='eventLogo' />
         <span className="price">
-          <img src='/lyft.png' alt='lyft' />
+          <img src='/lyft.png' alt='lyft' onClick={() => {this.getVenueInfo()}}/>
           <img src='/message.png' alt='message' onClick={() => {this.toggleMessaging()}}/>
           {this.state.priceLabel}
         </span>

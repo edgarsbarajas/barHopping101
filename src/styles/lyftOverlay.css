@@ -1,0 +1,8 @@
+.lyftOverlay {
+  color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: pink;
+  /* z-index: 10; */
+}
