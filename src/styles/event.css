@@ -2,6 +2,7 @@
   width: 97%;
   position: relative;
   margin-bottom: 20px;
+  z-index: 9;
 }
 
 .event .eventLogo {

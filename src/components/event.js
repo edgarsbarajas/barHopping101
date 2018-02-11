@@ -1,39 +1,47 @@
 import React from 'react'
+import MessagingOverlay from './messagingOverlay'
 import '../styles/event.css'
 
-const Event = (props) => {
-  console.log(props)
-  let priceLabel = "FREE"
-  if(!props.is_free){
-    priceLabel = "$"
+class Event extends React.Component {
+
+  constructor(props){
+    super(props);
+
+    this.state = {
+      priceLabel: this.props.is_free === true ? "FREE" : "$",
+      logoURL: this.props.logo ? this.props.logo.url : "/logoFiller.png",
+      showMessaging: false
+    }
   }
 
-  let logoURL = "/logoFiller.png"
-  if(props.logo){
-    logoURL = props.logo.url
+  toggleMessaging(){
+    this.setState({showMessaging: true})
   }
 
-  return(
-    <div className='event'>
-      <img src={logoURL} alt='event-logo' className='eventLogo' />
-      <span className="price">
-        <img src='/lyft.png' alt='lyft' />
-        <img src='/message.png' alt='message' />
-        {priceLabel}
-      </span>
-      <div className='details'>
-        <div className='time'>
-          {new Date(props.start.local).toLocaleString()}
-        </div>
-        <div className='title'>
-          {props.name.text}
-        </div>
-        <div className='moreInfo'>
-          <a href={props.url} target="_blank">More Info</a>
+  render(){
+    return(
+      <div className='event'>
+        <MessagingOverlay showMessaging={this.state.showMessaging} eventURL={this.props.url}/>
+        <img src={this.state.logoURL} alt='event-logo' className='eventLogo' />
+        <span className="price">
+          <img src='/lyft.png' alt='lyft' />
+          <img src='/message.png' alt='message' onClick={() => {this.toggleMessaging()}}/>
+          {this.state.priceLabel}
+        </span>
+        <div className='details'>
+          <div className='time'>
+            {new Date(this.props.start.local).toLocaleString()}
+          </div>
+          <div className='title'>
+            {this.props.name.text}
+          </div>
+          <div className='moreInfo'>
+            <a href={this.props.url} target="_blank">More Info</a>
+          </div>
         </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
+  }
 
 export default Event;

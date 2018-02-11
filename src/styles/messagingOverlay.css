@@ -1,0 +1,64 @@
+.messagingOverlay {
+  color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(111, 110, 112, 0.96);
+  z-index: 10;
+  padding-top: 5px;
+  box-sizing: border-box;
+}
+
+.messagingOverlay form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 100%;
+}
+
+.messagingOverlay form .firstRow {
+  width: 46%;
+  margin: 8px 5px -5px 5px;
+  height: 35px;
+  padding-left: 4px;
+  padding-top: 5px;
+  box-sizing: border-box;
+  background-color: white;
+  border: 1px lightgray solid;
+  font-size: 15px;
+  font-family: 'BentonSans Regular';
+  border-radius: 5px;
+}
+
+.messagingOverlay form .firstRow::placeholder {
+  color: lightgray;
+}
+
+.messagingOverlay .firstRow:focus, .messagingOverlay textarea:focus {
+  outline: none;
+  border: 1.25px #00BFFF solid;
+}
+
+.messagingOverlay textarea {
+  width: 94%;
+  height: 60%;
+  margin: 10px 0 5px 0;
+  border-radius: 5px;
+  border: 1px lightgray solid;
+  padding: 10px 10px 0 10px;
+  box-sizing: border-box;
+  font-size: 15px;
+  font-family: 'BentonSans Regular';
+}
+
+.messagingOverlay form input[type='submit'], .messagingOverlay form button {
+  width: 25%;
+  height: 25px;
+  border: none;
+  color: white;
+  background-color: #f6682F;
+  border-radius: 5px;
+  font-family: 'BentonSans Regular';
+  padding-top: 5px;
+  margin: 0 5px;
+}
