@@ -51,7 +51,7 @@
   font-family: 'BentonSans Regular';
 }
 
-.messagingOverlay form input[type='submit'] {
+.messagingOverlay form input[type='submit'], .messagingOverlay form button {
   width: 25%;
   height: 25px;
   border: none;
@@ -60,4 +60,5 @@
   border-radius: 5px;
   font-family: 'BentonSans Regular';
   padding-top: 5px;
+  margin: 0 5px;
 }

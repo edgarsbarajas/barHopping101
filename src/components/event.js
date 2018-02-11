@@ -14,6 +14,10 @@ class Event extends React.Component {
     }
   }
 
+  toggleMessaging(){
+    this.setState({showMessaging: true})
+  }
+
   render(){
     return(
       <div className='event'>
@@ -21,7 +25,7 @@ class Event extends React.Component {
         <img src={this.state.logoURL} alt='event-logo' className='eventLogo' />
         <span className="price">
           <img src='/lyft.png' alt='lyft' />
-          <img src='/message.png' alt='message' onClick={() => {this.setState({showMessaging: true})}}/>
+          <img src='/message.png' alt='message' onClick={() => {this.toggleMessaging()}}/>
           {this.state.priceLabel}
         </span>
         <div className='details'>
