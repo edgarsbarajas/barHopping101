@@ -1,10 +1,9 @@
 import React from 'react'
 import '../styles/messagingOverlay.css'
 
-class MessagingOverlay extends React.Component{
-  render(){
+const MessagingOverlay = (props) => {
     return(
-      <div className='messagingOverlay'>
+      <div className='messagingOverlay' style={{display: props.showMessaging === true ? "block" : "none" }}>
         <form>
           <input type='text' className='firstRow' placeholder='(415)555-1234'/>
           <input type='text' className='firstRow' placeholder='Your name'/>
@@ -13,7 +12,7 @@ class MessagingOverlay extends React.Component{
         </form>
       </div>
     )
-  }
+
 }
 
 export default MessagingOverlay;
