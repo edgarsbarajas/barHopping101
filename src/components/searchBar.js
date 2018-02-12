@@ -18,6 +18,7 @@ class SearchBar extends React.Component {
 
   handleSubmit(event){
     event.preventDefault()
+    this.props.setLoading()
 
     axios.get('http://barhopping101-backend.herokuapp.com/api/eventbrite', {
       params: {

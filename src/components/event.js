@@ -17,8 +17,6 @@ class Event extends React.Component {
       haveVenueInfo: false,
       venue: {longitude: "",latitude: ""}
     }
-
-    console.log("EVENT", this.state);
   }
 
   toggleMessaging(){
@@ -35,7 +33,6 @@ class Event extends React.Component {
 
     if(!this.state.haveVenueInfo){
       this.setState({haveVenueInfo: true})
-      console.log("got here ya bish 1");
       axios.get(`http://barhopping101-backend.herokuapp.com/api/eventbrite/venues/${this.props.venue_id}`)
         .then((response) => {
           this.setState({
