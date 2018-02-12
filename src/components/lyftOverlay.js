@@ -105,6 +105,12 @@ class LyftOverlay extends React.Component{
             )
           })
         )
+      }else{
+        return(
+          <div className='noLyfts'>
+            NO DRIVERS AVAILABLE
+          </div>
+        )
       }
     }
 

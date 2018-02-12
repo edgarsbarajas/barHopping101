@@ -29,6 +29,12 @@
   justify-content: space-between;
 }
 
+.lyftOverlay .noLyfts {
+  font-family: 'BentonSans Regular';
+  text-align: center;
+  width: 100%;
+}
+
 .lyft .rideType {
   padding-left: 15%;
 }
