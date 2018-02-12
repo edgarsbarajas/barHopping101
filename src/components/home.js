@@ -19,8 +19,10 @@ class Home extends React.Component {
     return(
       <div className='home'>
         <h1>Find your next bar hop</h1>
-        <SearchBar setEvents={(events) => {this.setState({events: events, loading: false})}}
-          setLoading={() => {this.setState({loading: true})}}/>
+        <SearchBar
+          setEvents={(events) => {this.setState({events: events, loading: false})}}
+          setLoading={() => {this.setState({loading: true})}}
+          clearEvents={() => {this.setState({events: []})}}/>
         <div className='powered-by'>
           <span>powered by</span>
           <img src='eventbrite.png' alt='eventbrite-logo'/>
