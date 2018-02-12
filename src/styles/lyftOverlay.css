@@ -3,6 +3,49 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: pink;
-  /* z-index: 10; */
+  background-color: rgba(111, 110, 112, 0.96);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.lyftOverlay .heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'BentonSans Thin';
+  margin-top: -10px;
+}
+
+.lyftOverlay img {
+  margin: 0 auto;
+}
+
+.lyft {
+  display: flex;
+  font-family: 'BentonSans Thin';
+  width: 100%;
+  justify-content: space-between;
+}
+
+.lyft .rideType {
+  padding-left: 15%;
+}
+
+.lyft .estimatedCost {
+  padding-right: 15%;
+}
+
+.lyftOverlay button {
+  width: 25%;
+  height: 25px;
+  border: none;
+  color: white;
+  background-color: #f6682F;
+  border-radius: 5px;
+  font-family: 'BentonSans Regular';
+  padding-top: 6px;
+  margin: 0 5px;
+  align-self: center;
 }

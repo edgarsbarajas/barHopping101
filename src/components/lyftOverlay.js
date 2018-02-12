@@ -96,10 +96,11 @@ class LyftOverlay extends React.Component{
     renderLyfts(){
       if(this.state.availableLyfts.length > 0){
         return(
-          this.state.availableLyfts.map((lyft) => {
+          this.state.availableLyfts.map((lyft, index) => {
             return(
-              <div className='lyft'>
-                {lyft.ride_type}
+              <div className='lyft' key={index}>
+                <div className='rideType'>{lyft.ride_type}...</div>
+                <div className='estimatedCost'>${(lyft.estimated_cost_cents_min)/100}</div>
               </div>
             )
           })
@@ -111,7 +112,11 @@ class LyftOverlay extends React.Component{
       if(this.state.showLyft){
         return(
           <div className='lyftOverlay'>
-            LYFT<br/>
+            <img src='/lyft-overlay.png' alt='lyft-logo' />
+            <div className='heading'>
+              <span className='firstLine'>ESTIMATES</span>
+              <span className='secondLine'>FROM YOUR LOCATION</span>
+            </div>
             {this.renderLyfts()}
             <button onClick={(e) => {this.closeOverlay(e)}}>Close</button>
           </div>
