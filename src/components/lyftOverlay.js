@@ -9,8 +9,9 @@ class LyftOverlay extends React.Component{
 
       this.state = {
         showLyft: props.showLyft,
-        venue: {longitude: "", latitude: ""},
-        whatever: 4
+        haveHumanLocation: false,
+        humanLocation: {},
+        availableLyfts: []
       }
     }
 
@@ -18,10 +19,11 @@ class LyftOverlay extends React.Component{
       console.log("NEXT PROPS", nextProps);
       if(nextProps.venueCoordinates !== this.props.venueCoordinates) {
         console.log(nextProps.venueCoordinates.longitude, nextProps.venueCoordinates.latitude);
-        this.setState({
-          venue: {longitude: nextProps.venueCoordinates.longitude, latitude: nextProps.venueCoordinates.latitude},
-          whatever: 5
-        })
+        // this.setState({
+        //   venue: {longitude: nextProps.venueCoordinates.longitude, latitude: nextProps.venueCoordinates.latitude},
+        // })
+
+        this.getLyftCosts(nextProps.venueCoordinates)
       }
 
       if(nextProps.showLyft !== this.state.showLyft){
@@ -29,51 +31,80 @@ class LyftOverlay extends React.Component{
       }
     }
 
-    getLocation(){
-      console.log("click");
-      // first, test for feature support
-      if('geolocation' in navigator){
-        // geolocation is supported :)
-        requestLocation();
-      }else{
-        // no geolocation :(
-        console.log("Sorry, looks like your browser doesn't support geolocation")
-      }
+    getLyftCosts(venueCoordinates){
+        axios.post('http://barhopping101-backend.herokuapp.com/api/lyft', {
+            venueCoordinates: venueCoordinates,
+            humanCoordinates: {longitude: '-122.405048', latitude: '37.782400'}
+        })
+        .then((response) => {
+          this.setState({availableLyfts: response.data})
+          console.log("*response****", response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
 
-      // requestLocation() returns a message, either the users coordinates, or an error message
-      function requestLocation(){
-        console.log("request location");
-        var options = {
-          // enableHighAccuracy = should the device take extra time or power to return a really accurate result, or should it give you the quick (but less accurate) answer?
-          enableHighAccuracy: false,
-          // timeout = how long does the device have, in milliseconds to return a result?
-          timeout: 5000,
-          // maximumAge = maximum age for a possible previously-cached position. 0 = must return the current position, not a prior cached position
-          maximumAge: 0
-        };
-
-        // call getCurrentPosition()
-        navigator.geolocation.getCurrentPosition(success, error, options);
-
-        // upon success, do this
-        function success(pos){
-          // get longitude and latitude from the position object passed in
-          console.log(pos.coords.longitude)
-          console.log(pos.coords.latitude)
-        }
-
-        // upon error, do this
-        function error(err){
-          // return the error message
-          console.log('Error: ' + err + ' :(')
-        }
-      } // end requestLocation();
-    } // end getLocation()
+    // getHumanLocation = () => {
+    //   console.log("click");
+    //   let humanCoordinates = {}
+    //   // first, test for feature support
+    //   if('geolocation' in navigator){
+    //     // geolocation is supported :)
+    //     requestLocation();
+    //   }else{
+    //     // no geolocation :(
+    //     console.log("Sorry, looks like your browser doesn't support geolocation")
+    //   }
+    //
+    //   // requestLocation() returns a message, either the users coordinates, or an error message
+    //   function requestLocation(){
+    //     console.log("request location");
+    //     var options = {
+    //       // enableHighAccuracy = should the device take extra time or power to return a really accurate result, or should it give you the quick (but less accurate) answer?
+    //       enableHighAccuracy: false,
+    //       // timeout = how long does the device have, in milliseconds to return a result?
+    //       timeout: 5000,
+    //       // maximumAge = maximum age for a possible previously-cached position. 0 = must return the current position, not a prior cached position
+    //       maximumAge: 0
+    //     };
+    //
+    //     // call getCurrentPosition()
+    //     navigator.geolocation.getCurrentPosition(this.success, error, options).bind(this)};
+    //
+    //     // upon success, do this
+    //      const success = (pos) => {
+    //        console.log("human tracking success")
+    //       // get longitude and latitude from the position object passed in
+    //       // console.log("HUMAN LONGITUDE", pos.coords.longitude)
+    //       console.log({longitude: pos.coords.longitude, latitude: pos.coords.latitude})
+    //       this.setState({haveHumanLocation: true})
+    //     }
+    //
+    //     // upon error, do this
+    //     function error(err){
+    //       // return the error message
+    //       console.log('Error: ' + err + ' :(')
+    //     }
+    //   } // end requestLocation();
+    //  // end getHumanLocation()
 
     closeOverlay(event){
-      event.preventDefault()
-
       this.setState({showLyft: false})
+    }
+
+    renderLyfts(){
+      if(this.state.availableLyfts.length > 0){
+        return(
+          this.state.availableLyfts.map((lyft) => {
+            return(
+              <div className='lyft'>
+                {lyft.ride_type}
+              </div>
+            )
+          })
+        )
+      }
     }
 
     render(){
@@ -81,10 +112,7 @@ class LyftOverlay extends React.Component{
         return(
           <div className='lyftOverlay'>
             LYFT<br/>
-            latitude: {this.state.venue.latitude}<br/>
-            longitude {this.state.venue.longitude} <br/>
-            whatever: {this.state.whatever}
-
+            {this.renderLyfts()}
             <button onClick={(e) => {this.closeOverlay(e)}}>Close</button>
           </div>
         )

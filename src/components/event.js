@@ -32,13 +32,12 @@ class Event extends React.Component {
   getVenueInfo(){
     console.log('lyft bitch')
     this.toggleLyft()
-    
+
     if(!this.state.haveVenueInfo){
       this.setState({haveVenueInfo: true})
       console.log("got here ya bish 1");
-      axios.get(`http://localhost:3001/api/eventbrite/venues/${this.props.venue_id}`)
+      axios.get(`http://barhopping101-backend.herokuapp.com/api/eventbrite/venues/${this.props.venue_id}`)
         .then((response) => {
-          console.log("got here ya bish 2");
           this.setState({
             venue: {longitude: response.data.longitude, latitude: response.data.latitude}
           })
