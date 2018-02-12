@@ -19,9 +19,12 @@ class SearchResults extends React.Component{
   }
 
   render(){
-    if(!this.state.loading){
       return(
         <div className='searchResults'>
+          <RingLoader
+              color={'#f6682F'}
+              loading={this.state.loading}
+            />
           { this.props.events.map((event, index) => {
               return(
                 <Event key={index} {...event}/>
@@ -29,14 +32,8 @@ class SearchResults extends React.Component{
           })}
         </div>
       )
-    }else{
-      return(
-        <RingLoader
-              color={'#123abc'}
-              loading={true}
-            />
-      )
-    }
+
+
   }
 
 }
