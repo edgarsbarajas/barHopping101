@@ -8,7 +8,8 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      events: []
+      events: [],
+      loading: false
     }
 
     console.log("state:", this.state);
@@ -18,12 +19,13 @@ class Home extends React.Component {
     return(
       <div className='home'>
         <h1>Find your next bar hop</h1>
-        <SearchBar setEvents={(events) => {this.setState({events: events})}}/>
+        <SearchBar setEvents={(events) => {this.setState({events: events, loading: false})}}
+          setLoading={() => {this.setState({loading: true})}}/>
         <div className='powered-by'>
           <span>powered by</span>
           <img src='eventbrite.png' alt='eventbrite-logo'/>
         </div>
-        <SearchResults events={this.state.events}/>
+        <SearchResults events={this.state.events} loading={this.state.loading}/>
       </div>
     )
   }
