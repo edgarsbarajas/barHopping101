@@ -19,6 +19,7 @@ class Home extends React.Component {
 
   componentDidMount(){
   console.log("mapppsssssss");
+  console.log(process.env.GOOGLE_MAPS_KEY)
   axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.GOOGLE_MAPS_KEY}`)
   .then(response => {
     console.log("google maps");
