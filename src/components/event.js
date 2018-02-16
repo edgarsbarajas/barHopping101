@@ -8,6 +8,7 @@ class Event extends React.Component {
 
   constructor(props){
     super(props);
+    console.log("EVENT***", props);
 
     this.state = {
       priceLabel: this.props.is_free === true ? "FREE" : "$",
@@ -28,7 +29,6 @@ class Event extends React.Component {
   }
 
   getVenueInfo(){
-    console.log('lyft bitch')
     this.toggleLyft()
 
     if(!this.state.haveVenueInfo){
@@ -36,7 +36,8 @@ class Event extends React.Component {
       axios.get(`http://barhopping101-backend.herokuapp.com/api/eventbrite/venues/${this.props.venue_id}`)
         .then((response) => {
           this.setState({
-            venue: {longitude: response.data.longitude, latitude: response.data.latitude}
+            venue: {longitude: response.data.longitude, latitude: response.data.latitude},
+            user: {longitude: this.props.userLocation.long, latitude: this.props.userLocation.long}
           })
         })
         .catch(function (error) {

@@ -18,30 +18,9 @@ class Home extends React.Component {
   }
 
   componentDidMount(){
-  //   axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyDeIdD4dZmfqED4gSOb_f7fErq0PdvUozI`)
-  //   .then(response => {
-  //     var lat = response.data.results[0].geometry.location.lat
-  //     var lng = response.data.results[0].geometry.location.lng
-  //     var coords = {
-  //       lat: lat,
-  //       lng: lng
-  //     }
-  //     console.log("YOYOYO", coords)
-  //
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //   });
-  // }
   console.log("mapppsssssss");
   axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${ENV['GOOGLE_MAPS_KEY']}`)
   .then(response => {
-    // var lat = response.data.results[0].geometry.location.lat
-    // var lng = response.data.results[0].geometry.location.lng
-    // var coords = {
-    //   lat: lat,
-    //   lng: lng
-    // }
     console.log("google maps");
     console.log("YOYOYO", response)
     console.log(response.data.location);
@@ -65,7 +44,7 @@ class Home extends React.Component {
           <span>powered by</span>
           <img src='eventbrite.png' alt='eventbrite-logo'/>
         </div>
-        <SearchResults events={this.state.events} loading={this.state.loading}/>
+        <SearchResults events={this.state.events} loading={this.state.loading} userLocation={this.state.userLocation}/>
       </div>
     )
   }
