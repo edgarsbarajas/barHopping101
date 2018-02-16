@@ -19,12 +19,10 @@ class Home extends React.Component {
 
   componentDidMount(){
   console.log("mapppsssssss");
-  axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.GOOGLE_MAPS_KEY}`)
+  console.log(process.env.GOOGLE_MAPS_KEY)
+  axios.get(`http://localhost:3000/api/google`)
   .then(response => {
-    console.log("google maps");
-    console.log("YOYOYO", response)
-    console.log(response.data.location);
-    this.setState({ userLocation: {lat: response.data.location.lat, long: response.data.location.lng}})
+    this.setState({ userLocation: {lat: response.data.lat, long: response.data.lng}})
     })
     .catch(error => {
       console.log(error);
