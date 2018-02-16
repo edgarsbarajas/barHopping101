@@ -20,7 +20,7 @@ class Home extends React.Component {
   componentDidMount(){
   console.log("mapppsssssss");
   console.log(process.env.GOOGLE_MAPS_KEY)
-  axios.get(`http://localhost:3000/api/google`)
+  axios.get(`http://barhopping101-backend.herokuapp.com/api/google`)
   .then(response => {
     this.setState({ userLocation: {lat: response.data.lat, long: response.data.lng}})
     })
