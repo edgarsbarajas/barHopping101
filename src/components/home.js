@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchBar from './searchBar'
 import SearchResults from './searchResults'
+import axios from 'axios'
 import '../styles/home.css'
 
 class Home extends React.Component {
@@ -9,11 +10,27 @@ class Home extends React.Component {
 
     this.state = {
       events: [],
-      loading: false
+      loading: false,
+      userLocation: {}
     }
 
     console.log("state:", this.state);
   }
+
+  componentDidMount(){
+  console.log("mapppsssssss");
+  axios.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${ENV['GOOGLE_MAPS_KEY']}`)
+  .then(response => {
+    console.log("google maps");
+    console.log("YOYOYO", response)
+    console.log(response.data.location);
+    this.setState({ userLocation: {lat: response.data.location.lat, long: response.data.location.lng}})
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
+
 
   render(){
     return(
@@ -27,7 +44,7 @@ class Home extends React.Component {
           <span>powered by</span>
           <img src='eventbrite.png' alt='eventbrite-logo'/>
         </div>
-        <SearchResults events={this.state.events} loading={this.state.loading}/>
+        <SearchResults events={this.state.events} loading={this.state.loading} userLocation={this.state.userLocation}/>
       </div>
     )
   }

@@ -5,7 +5,6 @@ import '../styles/lyftOverlay.css'
 class LyftOverlay extends React.Component{
     constructor(props){
       super(props);
-      console.log("LYFT", props);
 
       this.state = {
         showLyft: props.showLyft,
