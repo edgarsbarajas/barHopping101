@@ -36,8 +36,7 @@ class Event extends React.Component {
       axios.get(`http://barhopping101-backend.herokuapp.com/api/eventbrite/venues/${this.props.venue_id}`)
         .then((response) => {
           this.setState({
-            venue: {longitude: response.data.longitude, latitude: response.data.latitude},
-            user: {longitude: this.props.userLocation.long, latitude: this.props.userLocation.long}
+            venue: {longitude: response.data.longitude, latitude: response.data.latitude}
           })
         })
         .catch(function (error) {
@@ -49,7 +48,7 @@ class Event extends React.Component {
   render(){
     return(
       <div className='event'>
-        <LyftOverlay showLyft={this.state.showLyft} venueCoordinates={this.state.venue}/>
+        <LyftOverlay showLyft={this.state.showLyft} venueCoordinates={this.state.venue} userLocation={this.props.userLocation}/>
         <MessagingOverlay showMessaging={this.state.showMessaging} eventURL={this.props.url}/>
         <img src={this.state.logoURL} alt='event-logo' className='eventLogo' />
         <span className="price">

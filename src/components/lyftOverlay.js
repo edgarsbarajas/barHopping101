@@ -5,6 +5,7 @@ import '../styles/lyftOverlay.css'
 class LyftOverlay extends React.Component{
     constructor(props){
       super(props);
+      console.log("LYFT !!!!", props);
 
       this.state = {
         showLyft: props.showLyft,
@@ -33,7 +34,7 @@ class LyftOverlay extends React.Component{
     getLyftCosts(venueCoordinates){
         axios.post('http://barhopping101-backend.herokuapp.com/api/lyft', {
             venueCoordinates: venueCoordinates,
-            humanCoordinates: {longitude: '-122.405048', latitude: '37.782400'}
+            humanCoordinates: {longitude: this.props.userLocation.long, latitude: this.props.userLocation.lat}
         })
         .then((response) => {
           this.setState({availableLyfts: response.data})
