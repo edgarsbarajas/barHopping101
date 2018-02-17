@@ -20,8 +20,8 @@ class SearchBar extends React.Component {
     event.preventDefault()
     this.props.setLoading()
     this.props.clearEvents()
-    
-    axios.get('http://barhopping101-backend.herokuapp.com/api/eventbrite', {
+
+    axios.get('https://barhopping101-backend.herokuapp.com/api/eventbrite', {
       params: {
         city: this.state.searchValue
        }

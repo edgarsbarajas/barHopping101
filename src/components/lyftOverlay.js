@@ -32,7 +32,7 @@ class LyftOverlay extends React.Component{
     }
 
     getLyftCosts(venueCoordinates){
-        axios.post('http://barhopping101-backend.herokuapp.com/api/lyft', {
+        axios.post('https://barhopping101-backend.herokuapp.com/api/lyft', {
             venueCoordinates: venueCoordinates,
             humanCoordinates: {longitude: this.props.userLocation.long, latitude: this.props.userLocation.lat}
         })
