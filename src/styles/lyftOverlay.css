@@ -36,6 +36,11 @@
   width: 100%;
 }
 
+.lyft .numberOfSeats {
+  font-size: 11px;
+  color: #B6B6B6;
+}
+
 .lyft .rideTypeWrapper {
   padding-left: 10%;
   display: flex;
