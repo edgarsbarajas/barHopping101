@@ -5,7 +5,6 @@ import '../styles/lyftOverlay.css'
 class LyftOverlay extends React.Component{
     constructor(props){
       super(props);
-      console.log("LYFT !!!!", props);
 
       this.state = {
         showLyft: props.showLyft,
@@ -18,11 +17,6 @@ class LyftOverlay extends React.Component{
     componentWillReceiveProps = (nextProps) => {
       console.log("NEXT PROPS", nextProps);
       if(nextProps.venueCoordinates !== this.props.venueCoordinates) {
-        console.log(nextProps.venueCoordinates.longitude, nextProps.venueCoordinates.latitude);
-        // this.setState({
-        //   venue: {longitude: nextProps.venueCoordinates.longitude, latitude: nextProps.venueCoordinates.latitude},
-        // })
-
         this.getLyftCosts(nextProps.venueCoordinates)
       }
 
@@ -45,62 +39,44 @@ class LyftOverlay extends React.Component{
         });
     }
 
-    // getHumanLocation = () => {
-    //   console.log("click");
-    //   let humanCoordinates = {}
-    //   // first, test for feature support
-    //   if('geolocation' in navigator){
-    //     // geolocation is supported :)
-    //     requestLocation();
-    //   }else{
-    //     // no geolocation :(
-    //     console.log("Sorry, looks like your browser doesn't support geolocation")
-    //   }
-    //
-    //   // requestLocation() returns a message, either the users coordinates, or an error message
-    //   function requestLocation(){
-    //     console.log("request location");
-    //     var options = {
-    //       // enableHighAccuracy = should the device take extra time or power to return a really accurate result, or should it give you the quick (but less accurate) answer?
-    //       enableHighAccuracy: false,
-    //       // timeout = how long does the device have, in milliseconds to return a result?
-    //       timeout: 5000,
-    //       // maximumAge = maximum age for a possible previously-cached position. 0 = must return the current position, not a prior cached position
-    //       maximumAge: 0
-    //     };
-    //
-    //     // call getCurrentPosition()
-    //     navigator.geolocation.getCurrentPosition(this.success, error, options).bind(this)};
-    //
-    //     // upon success, do this
-    //      const success = (pos) => {
-    //        console.log("human tracking success")
-    //       // get longitude and latitude from the position object passed in
-    //       // console.log("HUMAN LONGITUDE", pos.coords.longitude)
-    //       console.log({longitude: pos.coords.longitude, latitude: pos.coords.latitude})
-    //       this.setState({haveHumanLocation: true})
-    //     }
-    //
-    //     // upon error, do this
-    //     function error(err){
-    //       // return the error message
-    //       console.log('Error: ' + err + ' :(')
-    //     }
-    //   } // end requestLocation();
-    //  // end getHumanLocation()
-
     closeOverlay(event){
       this.setState({showLyft: false})
     }
 
+    renderNumberOfSeats(rideType){
+      if(rideType === 'lyft'){
+        return '4 seats'
+      }else if(rideType === 'lyft_line'){
+        return '1-2 seats, shared'
+      }
+    }
+
+    renderRideTypes(rideType){
+      if(rideType === 'lyft'){
+        return "Lyft"
+      }else if(rideType === 'lyft_line'){
+        return 'Line'
+      }
+    }
+
     renderLyfts(){
+      let rideType = ""
       if(this.state.availableLyfts.length > 0){
         return(
           this.state.availableLyfts.map((lyft, index) => {
+            rideType = lyft.ride_type
             return(
               <div className='lyft' key={index}>
-                <div className='rideType'>{lyft.ride_type}...</div>
-                <div className='estimatedCost'>${(lyft.estimated_cost_cents_min)/100}</div>
+                <div className='rideTypeWrapper'>
+                  <img src={`${rideType}.png`} alt={rideType}/>
+                  <div className='rideTypeDetails'>
+                    <div className='rideType'>{this.renderRideTypes(rideType)}</div>
+                    <div className='numberOfSeats'>{this.renderNumberOfSeats(rideType)}</div>
+                  </div>
+                </div>
+                <div className='estimatedCost'>
+                  ${(lyft.estimated_cost_cents_min)/100}
+                </div>
               </div>
             )
           })

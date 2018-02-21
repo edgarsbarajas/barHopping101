@@ -52,7 +52,7 @@ class Event extends React.Component {
         <MessagingOverlay showMessaging={this.state.showMessaging} eventURL={this.props.url}/>
         <img src={this.state.logoURL} alt='event-logo' className='eventLogo' />
         <span className="price">
-          <img src='/lyft.png' alt='lyft' onClick={() => {this.getVenueInfo()}}/>
+          <img src='/lyft_event_button.png' alt='lyft' onClick={() => {this.getVenueInfo()}}/>
           <img src='/message.png' alt='message' onClick={() => {this.toggleMessaging()}}/>
           {this.state.priceLabel}
         </span>
