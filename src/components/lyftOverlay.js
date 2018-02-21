@@ -75,7 +75,7 @@ class LyftOverlay extends React.Component{
                   </div>
                 </div>
                 <div className='estimatedCost'>
-                  ${(lyft.estimated_cost_cents_min)/100}
+                  ${((lyft.estimated_cost_cents_min)/100).toFixed(2)}
                 </div>
               </div>
             )
