@@ -8,12 +8,17 @@ class SearchBar extends React.Component {
     console.log(props);
 
     this.state = {
-      searchValue: ""
+      searchValue: "",
+      startDateKeyword: ""
     }
   }
 
-  handleChange(event){
+  handleInputChange(event){
     this.setState({ searchValue: event.target.value })
+  }
+
+  handleSelectChange(event){
+    this.setState({ startDateKeyword: event.target.value })
   }
 
   handleSubmit(event){
@@ -23,7 +28,8 @@ class SearchBar extends React.Component {
 
     axios.get('https://barhopping101-backend.herokuapp.com/api/eventbrite', {
       params: {
-        city: this.state.searchValue
+        city: this.state.searchValue,
+        start: this.state.startDateKeyword
        }
     })
     .then((response) => {
@@ -42,15 +48,17 @@ class SearchBar extends React.Component {
       <form className='searchBar' onSubmit={e => {this.handleSubmit(e)}}>
         <input type='text'
           value={this.state.searchValue}
-          onChange={e => this.handleChange(e)}
+          onChange={e => this.handleInputChange(e)}
           placeholder='Search city'/>
-        <select>
+        <select onChange={(e) => {this.handleSelectChange(e)}}>
           <option value="all dates">All Dates &#8675;</option>
-          <option value="today">Tomorrow</option>
-          <option value="this week">This Week</option>
-          <option value="this weekend">This Weekend</option>
-          <option value="next week">Next Month</option>
-          <option value="next month">Next Month</option>
+          <option value="today">Today</option>
+          <option value="tomorrow">Tomorrow</option>
+          <option value="this_week">This Week</option>
+          <option value="this_weekend">This Weekend</option>
+          <option value="next_week">Next Week</option>
+          <option value="this_month">This Month</option>
+          <option value="next_month">Next Month</option>
         </select>
         <input type='submit' defaultValue='SEARCH'/>
       </form>
